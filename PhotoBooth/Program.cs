@@ -1,12 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace PhotoBooth
 {
@@ -20,6 +13,10 @@ namespace PhotoBooth
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-        .UseKestrel((context, options) => options.Listen(System.Net.IPAddress.Any, 5000));
+                .UseKestrel((context, options) =>
+                {
+                    options.ListenAnyIP(5000);
+                    options.ListenAnyIP(4200);
+                });
     }
 }

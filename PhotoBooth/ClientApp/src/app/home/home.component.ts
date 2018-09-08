@@ -1,21 +1,19 @@
-import {Component, Inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {NavigationService} from "../share/navigation.service";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  private http: HttpClient;
-  private baseUrl: string;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(private http: HttpClient, private navigation: NavigationService) {
     this.http = http;
-    this.baseUrl = baseUrl;
   }
 
   public startPhotoBooth() {
-    this.http.get(this.baseUrl + 'api/PhotoBooth/LiveAndCapture').subscribe(result => {
+    this.http.get(this.navigation.getServerWithProtocolAndPort() + '/api/PhotoBoothController/LiveAndCapture').subscribe(result => {
       console.info(result);
     }, error => console.error(error));
   }

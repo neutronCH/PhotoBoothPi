@@ -1,15 +1,15 @@
 <div class=".container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <img class="img-responsive" height="100%" src="../../assets/latest.jpg"/>
+      <img class="img-responsive" height="100%" [src]="image"/>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-6">
-      <button type="button" class="btn btn-success">JA</button>
+      <button (click)="print()" type="button" class="btn btn-success" style="width: 100%">Drucken</button>
     </div>
     <div class="col-sm-6">
-      <button type="button" class="btn btn-danger">NEIN</button>
+      <button (click)="abort()" type="button" class="btn btn-danger" style="width: 100%">Nicht Drucken</button>
     </div>
   </div>
 </div>
