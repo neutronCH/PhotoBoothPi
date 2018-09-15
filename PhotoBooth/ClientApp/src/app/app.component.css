@@ -1,0 +1,12 @@
+.main {
+  min-height: 100vh;
+}
+
+.header {
+  min-height: 64px;
+  max-height: 64px;
+}
+
+.content {
+  min-height: calc(100vh - 64px);
+}

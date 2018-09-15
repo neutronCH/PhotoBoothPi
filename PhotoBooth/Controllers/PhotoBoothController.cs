@@ -69,6 +69,13 @@ namespace PhotoBooth.Controllers
             Console.WriteLine(res);
             _hubContext.Clients.All.Navigate("capture");
         }
+
+        [HttpGet("PrintPicture")]
+        public void PrintPicture()
+        {
+            var res = BashHelper.ExecuteNonBlockingBash("lp /home/pi/net/photobooth/ClientApp/dist/assets/latest.jpg");
+            Console.WriteLine(res);
+        }
         
         [HttpGet("Init")]
         public void Init()

@@ -1,15 +1,15 @@
-<div class=".container-fluid">
-  <div class="row">
-    <div class="col-sm-12">
-      <img class="img-responsive" height="100%" [src]="image"/>
-    </div>
+<div class="content" style="max-width: 100vw;">
+  <div fxLayoutAlign="center">
+    <img [src]="image"/>
   </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <button (click)="print()" type="button" class="btn btn-success" style="width: 100%">Drucken</button>
-    </div>
-    <div class="col-sm-6">
-      <button (click)="abort()" type="button" class="btn btn-danger" style="width: 100%">Nicht Drucken</button>
+  <div class="buttonDiv">
+    <div fxFill fxLayout="row" fxFlexAlign="center">
+      <div fxFlex>
+        <button (click)="print()" type="button" class="btn btn-success fill">Drucken</button>
+      </div>
+      <div fxFlex>
+        <button (click)="abort()" type="button" class="btn btn-danger fill">Nicht Drucken</button>
+      </div>
     </div>
   </div>
 </div>
