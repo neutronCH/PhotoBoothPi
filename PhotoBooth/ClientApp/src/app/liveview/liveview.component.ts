@@ -16,8 +16,8 @@ export class LiveviewComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       // this.image = 'http://192.168.1.11:8090/camera.mjpg' + '?' + (new Date()).getTime();
-      this.image = this.navigation.getServerWithProtocol() + ':8090/camera.mjpg' + '?' + (new Date()).getTime();
-    }, 1000)
+      this.image = this.navigation.getServerWithProtocol() + ':8080/?action=stream' + '&' + (new Date()).getTime();
+    }, 1000);
     //
 
   }

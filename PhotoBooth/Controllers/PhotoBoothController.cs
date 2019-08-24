@@ -1,5 +1,4 @@
 using System;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -18,15 +17,14 @@ namespace PhotoBooth.Controllers
         {
             _hubContext = hubContext;
         }
-        
+
         [HttpGet("LiveAndCapture")]
         public void LiveAndCapture()
         {
-
             Task.Factory.StartNew(() =>
             {
                 Console.WriteLine("PhotoBooth Workflow: Start PhotoBooth Workflow");
-                Console.WriteLine("PhotoBooth Workflow: Start LiveView");
+                Console.WriteLine("PhotoBooth Workflow: Start Start Live View");
                 StartLiveView();
                 Thread.Sleep(TimeSpan.FromSeconds(3));
                 _hubContext.Clients.All.Notify("5");
@@ -38,30 +36,28 @@ namespace PhotoBooth.Controllers
                 _hubContext.Clients.All.Notify("2");
                 Thread.Sleep(TimeSpan.FromSeconds(1));
                 _hubContext.Clients.All.Notify("1");
-                Console.WriteLine("PhotoBooth Workflow: Stop LiveView");
-                StopLiveView();
-                Thread.Sleep(TimeSpan.FromMilliseconds(500));
+                Thread.Sleep(TimeSpan.FromSeconds(1));
                 _hubContext.Clients.All.Notify("CHÄÄÄÄÄÄÄÄÄS");
                 Console.WriteLine("PhotoBooth Workflow: Take Picture");
                 TakePicture();
             });
         }
-        
+
         [HttpGet("StartLiveView")]
         public void StartLiveView()
         {
             _hubContext.Clients.All.Navigate("live-view");
-            var res = BashHelper.ExecuteNonBlockingBash("cd /home/pi/photobooth && ./startLiveView.sh");
-            Console.WriteLine(res);
+//            var res = BashHelper.ExecuteNonBlockingBash("cd /home/pi/photobooth && ./startLiveView.sh");
+//            Console.WriteLine(res);
         }
-        
+
         [HttpGet("StopLiveView")]
         public void StopLiveView()
         {
             var res = BashHelper.ExecuteNonBlockingBash("cd /home/pi/photobooth && ./stopLiveView.sh");
             Console.WriteLine(res);
         }
-        
+
         [HttpGet("TakePicture")]
         public void TakePicture()
         {
@@ -76,7 +72,7 @@ namespace PhotoBooth.Controllers
             var res = BashHelper.ExecuteNonBlockingBash("lp /home/pi/net/photobooth/ClientApp/dist/assets/latest.jpg");
             Console.WriteLine(res);
         }
-        
+
         [HttpGet("Init")]
         public void Init()
         {
