@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {NavigationService} from "../share/navigation.service";
 
@@ -7,10 +7,15 @@ import {NavigationService} from "../share/navigation.service";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  image: string;
 
   constructor(private http: HttpClient, private navigation: NavigationService) {
     this.http = http;
+  }
+
+  ngOnInit() {
+    this.image = this.navigation.getServerWithProtocolAndPort() + '/assets/logo.jpg';
   }
 
   public startPhotoBooth() {

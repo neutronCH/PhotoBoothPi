@@ -26,11 +26,7 @@ namespace PhotoBooth.Controllers
                 Console.WriteLine("PhotoBooth Workflow: Start PhotoBooth Workflow");
                 Console.WriteLine("PhotoBooth Workflow: Start Start Live View");
                 StartLiveView();
-                Thread.Sleep(TimeSpan.FromSeconds(3));
-                _hubContext.Clients.All.Notify("5");
-                Thread.Sleep(TimeSpan.FromSeconds(1));
-                _hubContext.Clients.All.Notify("4");
-                Thread.Sleep(TimeSpan.FromSeconds(1));
+                Thread.Sleep(TimeSpan.FromSeconds(2));
                 _hubContext.Clients.All.Notify("3");
                 Thread.Sleep(TimeSpan.FromSeconds(1));
                 _hubContext.Clients.All.Notify("2");
@@ -47,15 +43,11 @@ namespace PhotoBooth.Controllers
         public void StartLiveView()
         {
             _hubContext.Clients.All.Navigate("live-view");
-//            var res = BashHelper.ExecuteNonBlockingBash("cd /home/pi/photobooth && ./startLiveView.sh");
-//            Console.WriteLine(res);
         }
 
         [HttpGet("StopLiveView")]
         public void StopLiveView()
         {
-            var res = BashHelper.ExecuteNonBlockingBash("cd /home/pi/photobooth && ./stopLiveView.sh");
-            Console.WriteLine(res);
         }
 
         [HttpGet("TakePicture")]
@@ -71,6 +63,13 @@ namespace PhotoBooth.Controllers
         {
             var res = BashHelper.ExecuteNonBlockingBash("lp /home/pi/net/photobooth/ClientApp/dist/assets/latest.jpg");
             Console.WriteLine(res);
+            Home();
+        }
+
+        [HttpGet("Home")]
+        public void Home()
+        {
+            _hubContext.Clients.All.Navigate("home");
         }
 
         [HttpGet("Init")]

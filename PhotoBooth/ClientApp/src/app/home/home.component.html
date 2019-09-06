@@ -1,17 +1,8 @@
 <div fxLayout="column" fxFlexAlign="center" class="content">
   <div fxFlex></div>
   <div fxFlexAlign="center">
-    <h1><b>Willkommen zum Photo Booth</b></h1>
+    <img [src]="image" (click)="startPhotoBooth()"/>
   </div>
   <div fxFlex></div>
-  <div>
-    <div fxLayout="row" fxLayoutAlign="space-around">
-      <div fxFlex="50">
-        <button (click)="startPhotoBooth()" type="button" class="btn btn-success btn-block" style="min-height: 200px">
-          Start
-        </button>
-      </div>
-    </div>
-  </div>
   <div fxFlex></div>
 </div>

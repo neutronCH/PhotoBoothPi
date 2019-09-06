@@ -23,7 +23,6 @@ export class CaptureComponent implements OnInit {
     this.http.get(this.navigation.getServerWithProtocolAndPort() + '/api/PhotoBoothController/PrintPicture').subscribe(result => {
       console.info(result);
     }, error => console.error(error));
-    this.abort();
   }
 
   abort() {
